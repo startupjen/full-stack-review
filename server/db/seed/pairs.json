@@ -1,0 +1,26 @@
+[
+  {
+    "event": "Activity #1",
+    "engineer1": "Adrian",
+    "engineer2": "Niv",
+    "misc": "this is a pair"
+  },
+  {
+    "event": "Activity #2",
+    "engineer1": "Niv",
+    "engineer2": "Erica",
+    "misc": "bloop bloop another pair"
+  },
+  {
+    "event": "Activity #2",
+    "engineer1": "William",
+    "engineer2": "Smita",
+    "misc": "wheeeee pairing!"
+  },
+  {
+    "event": "Activity #3",
+    "engineer1": "William",
+    "engineer2": "Adrian",
+    "misc": "more pairing"
+  }
+]

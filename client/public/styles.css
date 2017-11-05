@@ -1,0 +1,58 @@
+/*
+Used CSS Grid Layout to style, newer tech
+*/
+
+.title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.pairs-form {
+  width: 80%;
+  margin: auto;  
+  padding: 10px;
+  border-style: solid;
+  border-color: black;
+}
+
+.pairs-form-first-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.submit-button {
+  margin-top: 3vh;
+}
+
+.buttons-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+textarea {
+  width: 100%;
+}
+
+.textarea-field {
+  width: 50%;
+}
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 3vh;
+}
+
+.roster-list-entry {
+  text-align: center;
+  margin-bottom: 3vh;
+}
+
+.engineer-name {
+  font-weight: bold;
+}
+
+.engineer-email {
+  font-size: small;
+}
