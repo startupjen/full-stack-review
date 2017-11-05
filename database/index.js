@@ -20,9 +20,9 @@ const eventSchema = new mongoose.Schema({
 })
 
 const pairSchema = new mongoose.Schema({
-  event_id: String,
-  engineer1_id: String,
-  engineer2_id: String,
+  event: String,
+  engineer1: String,
+  engineer2: String,
   misc: String
 })
 
