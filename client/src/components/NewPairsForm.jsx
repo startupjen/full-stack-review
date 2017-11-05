@@ -45,8 +45,14 @@ export default class NewPairsForm extends Component {
       <div className="pairs-form">
         <form onSubmit={this.handleSubmit}>
             <div className="pairs-form-first-row">
-              <div className="text-field">Engineer 1 <input type="text" value={this.state.engineer1} name="engineer1" onChange={this.handleChange} /></div>
-              <div className="text-field">Engineer 2 <input type="text" value={this.state.engineer2} name="engineer2" onChange={this.handleChange} /></div>
+              <select name="engineer1">
+                <option value="">Select Engineer #1</option>
+                { this.props.cohort.map( (engineer, index) => (<option value={engineer.name}>{engineer.name}</option>) ) }
+              </select>
+              <select name="engineer2">
+                <option value="">Select Engineer #2</option>
+                { this.props.cohort.map( (engineer, index) => (<option value={engineer.name}>{engineer.name}</option>) ) }
+              </select>
               <div className="text-field">Event <input type="text" value={this.state.event} name="event" onChange={this.handleChange} /></div>
             </div>
             Misc<div className="textarea-field"><textarea value={this.state.misc} name="misc" onChange={this.handleChange} /></div>

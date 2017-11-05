@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 
 import PairsList from './PairsList.jsx'
 import RosterList from './RosterList.jsx'
@@ -9,11 +10,21 @@ export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      rosterOrPairs: true
+      rosterOrPairs: true,
+      cohort: []
     }
     this.title = 'HRLA18 Pairings'
     this.onClickRoster = this.onClickRoster.bind(this)
     this.onClickPairs = this.onClickPairs.bind(this)
+  }
+
+  componentWillMount() {
+    axios.get('/cohort')
+      .then( (response) => {
+        console.log('response.data is ', response.data)
+        this.setState({ cohort: response.data })
+      })
+      .catch( (error) => console.log(error) )
   }
 
   onClickRoster() {
@@ -28,12 +39,12 @@ export default class App extends Component {
     return(
       <div>
         <div className="title">{this.title}</div>
-        <NewPairsForm />
+        <NewPairsForm cohort={this.state.cohort} />
         <div className="buttons-section">
           <button onClick={this.onClickRoster}>Roster</button>
           <button onClick={this.onClickPairs}>Pairs</button>
         </div>
-        { this.state.rosterOrPairs ? <RosterList /> : <PairsList /> }
+        { this.state.rosterOrPairs ? <RosterList cohort={this.state.cohort} /> : <PairsList /> }
       </div>
     )
   }
