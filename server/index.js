@@ -1,35 +1,71 @@
 const express = require('express')
 const path = require('path')
 const parser = require('body-parser')
-const db = require('./db/index')
+const db = require('../database')
 
 const app = express()
-const PORT = 3000
 
 app.use(parser.json())
+app.use(parser.urlencoded({extended: true}))
 
-console.log('path.join ', path.join(__dirname, '../client/public'))
-app.use(express.static(path.join(__dirname, '../client/public')))
+
+app.use('/assets', express.static(path.join(__dirname, '../node_modules/angular')))
+app.use(express.static(path.join(__dirname, '../client')))
 
 app.get('/cohort', (req, res) => {
-  db.Cohort.findAll().then(cohort => {  
-    res.status(200).send(cohort)
+  db.Student.find({}, (err, data) => {
+    if (err) {
+      return console.log(err)
+    }
+    res.status(200).send(data)
   })
 })
 
-app.get('/pairs', (req, res) => {
-  db.Pair.findAll().then(pair => {  
-    res.status(200).send(pair)
+app.post('/cohort', (req, res) => {
+  // not used
+  res.status(200).send('cohort is fixed, no problem')  
+})
+
+app.get('/event', (req, res) => {
+  db.Event.find({}, (err, data) => {
+    if (err) {
+      return console.log(err)
+    }
+    res.status(200).send(data)
   })
 })
 
-app.post('/newPair', (req, res) => {
-  console.log('req.body is ', req.body)
-  db.Pair.create(req.body).then(pair => {  
-    res.status(200).send('pair created!!!')
+app.post('/event', (req, res) => {
+  // not used
+  res.status(200).send('server responding')  
+})
+
+app.get('/pair', (req, res) => {
+  db.Pair.find({}, (err, data) => {
+    if (err) {
+      return console.log(err)
+    }
+    res.status(200).send(data)
   })
 })
 
-app.listen(PORT, ()=> {
-  console.log('SERVER listening on PORT', PORT)
+app.post('/pair', (req, res) => {
+  const newPair = new db.Pair(req.body)
+  newPair.save((err, data) => {
+    if (err) {
+      res.send('error posting pair')
+      return console.log(err)
+    }
+    res.status(201).send(data)  
+  })
+})
+
+// wildcard route sends 404
+app.use('/*', (req, res) => {
+  res.status(404).send(`${req.method} handler for ${req.url} not found`)
+})
+
+
+app.listen(3000, () => {
+  console.log('Server listening on 3000')
 })
