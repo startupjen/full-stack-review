@@ -1,2 +1,7 @@
 node_modules
 client/public/compiled
+
+.DS_Store
+cohort_json.json
+events_json.json
+pairs_json.json
